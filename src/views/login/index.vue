@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, Ref } from "vue";
+import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { ElInput, ElButton, ElForm, ElFormItem } from "element-plus";
 import { useValidate } from "@/util/hooks";
@@ -43,6 +43,7 @@ interface IloginForm {
   pass: string;
   user: string;
 }
+
 const loading = ref<boolean>(false);
 const data = reactive<IloginForm>({
   user: "Admin",
@@ -60,6 +61,7 @@ const rules = reactive({
 
 function submitForm() {
   validate().then((res) => {
+    // verify success
     if (res) router.push("/element");
   });
 }

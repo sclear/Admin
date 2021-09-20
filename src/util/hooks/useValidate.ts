@@ -15,7 +15,7 @@ function useValidate(
   function verify(): Promise<boolean | undefined> {
     return new Promise((rs) => {
       if (ref.value === undefined)
-        throw new Error("ElForm constuctor is Not Found");
+        throw new Error("ElForm Constuctor is Not Found");
       ref.value.validate((v?: boolean) => rs(v));
     });
   }
@@ -23,8 +23,8 @@ function useValidate(
   return {
     valid,
     async validate(): Promise<boolean | undefined> {
-      const boo: boolean | undefined = await verify();
-      return boo;
+      const token: boolean | undefined = await verify();
+      return token;
     },
   };
 }

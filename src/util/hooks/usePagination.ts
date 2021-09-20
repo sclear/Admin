@@ -14,7 +14,7 @@ export interface IpaginationParams {
   currentSize: number;
 }
 
-export type UsePagination = IPagination<IpaginationParams>;;
+export type UsePagination = IPagination<IpaginationParams>;
 
 function usePagination(
   getQuery: (params: IpaginationParams) => void

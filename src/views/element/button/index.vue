@@ -5,7 +5,7 @@
         <h3 class="title-color">Button 按钮</h3>
       </ElCard>
     </template>
-    <ElCard shadow="hover">
+    <ElCard>
       <template #header>
         <h4 class="title-color">基础用法</h4>
         <div class="des-color fs14 mt">基础的按钮用法.</div>
