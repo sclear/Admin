@@ -23,7 +23,7 @@ defineProps({
 
 <style>
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-  min-height: calc(100vh - 70px);
+  min-height: calc(100vh - 72px);
   width: 200px;
 }
 </style>

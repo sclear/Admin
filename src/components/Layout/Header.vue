@@ -2,8 +2,10 @@
   <div class="header">
     <div class="head-l">
       <div :class="isCollapse ? 'logo mini-logo' : 'logo'">
-        <img v-if="!isCollapse" src="@/assets/images/l.png" alt="" />
-        <img v-else src="@/assets/images/s.png" alt="" />
+        <!-- <img v-if="!isCollapse" src="@/assets/images/l.png" alt="" /> -->
+        <!-- <img v-else src="@/assets/images/s.png" alt="" /> -->
+        <h2 v-if="!isCollapse">Admin</h2>
+        <h4 v-else>Admin</h4>
       </div>
       <el-icon
         :class="isCollapse ? 'icon icon-close' : 'icon'"
@@ -45,7 +47,7 @@ function updateMenuStatu() {
       cursor: pointer;
       color: #606266;
       transition: all 0.2s linear;
-      margin-left: 30px;
+      margin-left: 5px;
     }
     .icon-close {
       transform: scale(1.5) rotate(180deg);
@@ -54,6 +56,7 @@ function updateMenuStatu() {
   .logo {
     width: 200px;
     transition: all 0.2s linear;
+    text-align: center;
     img {
       height: 50px;
     }

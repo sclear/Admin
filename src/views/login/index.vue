@@ -27,6 +27,7 @@
           @click="submitForm()"
           >{{ loading ? "登录中..." : "登录" }}</el-button
         >
+        <el-button @click="reset">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -52,7 +53,7 @@ const data = reactive<IloginForm>({
 
 const loginForm = ref<InstanceType<typeof ElForm>>();
 
-const { valid, validate } = useValidate(loginForm);
+const { valid, validate, reset } = useValidate(loginForm);
 
 const rules = reactive({
   user: valid.must("请输入账号"),

@@ -1,20 +1,20 @@
 <template>
   <Container>
     <Card class="pb0" shadow="hover">
-      <ElForm size="small">
+      <ElForm :model="form" ref="Form" size="small">
         <ElRow>
           <ElCol :span="7">
-            <ElFormItem label="审批人">
+            <ElFormItem prop="user" label="审批人：">
               <ElInput v-model="form.user" placeholder="审批人"></ElInput>
             </ElFormItem>
           </ElCol>
           <ElCol :span="7" :offset="1">
-            <ElFormItem label="审批人">
+            <ElFormItem prop="user" label="审批人：">
               <ElInput v-model="form.user" placeholder="审批人"></ElInput>
             </ElFormItem>
           </ElCol>
           <ElCol :span="7" :offset="1">
-            <ElFormItem label="区域">
+            <ElFormItem label="区域：">
               <ElSelect
                 class="full"
                 v-model="form.region"
@@ -26,20 +26,26 @@
             </ElFormItem>
           </ElCol>
           <ElCol class="mg0" :span="7">
-            <ElFormItem label="审批人">
+            <ElFormItem label="审批人：">
               <ElInput v-model="form.user" placeholder="审批人"></ElInput>
             </ElFormItem>
           </ElCol>
           <ElCol class="mg0" :span="7" :offset="1">
-            <ElFormItem label="审批人">
+            <ElFormItem label="审批人：">
               <ElInput v-model="form.user" placeholder="审批人"></ElInput>
             </ElFormItem>
           </ElCol>
           <ElCol class="mg0" :span="2" :offset="1">
-            <ElButton size="small" class="full" type="primary">查询</ElButton>
+            <ElButton @click="search" size="small" class="full" type="primary"
+              >查询</ElButton
+            >
           </ElCol>
           <ElCol class="mg0" :span="2">
-            <ElButton size="small" class="full ml" type="warning"
+            <ElButton
+              @click="paramsForm.reset"
+              size="small"
+              class="full ml"
+              type="warning"
               >重置</ElButton
             >
           </ElCol>
@@ -76,20 +82,22 @@
         class="flex-end mt mr"
         :page-sizes="[100, 200, 300, 400]"
         background
+        @current-change="paginParams.currentChange"
+        @size-change="paginParams.sizeChange"
         :layout="paginParams.layout"
         :total="paginParams.total"
       ></ElPagination>
     </Card>
-    <!-- <template #pagination> -->
-    <!-- </template> -->
   </Container>
 </template>
 
 <script setup lang="ts">
 import Container from "@/components/common/Container.vue";
 import Card from "@/components/common/Card.vue";
-import { reactive } from "@vue/reactivity";
+import { h } from "vue";
+import { reactive, ref } from "@vue/reactivity";
 import { usePagination } from "@/util/hooks";
+import { useValidate } from "@/util/hooks";
 import {
   ElRow,
   ElCol,
@@ -102,13 +110,15 @@ import {
   ElTable,
   ElTableColumn,
   ElPagination,
+  ElNotification,
 } from "element-plus";
 
 const form = reactive({
   user: "",
   region: "",
 });
-
+const Form = ref();
+const paramsForm = useValidate(Form);
 const tableData = [
   {
     date: "2016-05-02",
@@ -177,9 +187,24 @@ const tableData = [
 ];
 
 const paginParams = usePagination((paginationParams) => {
-  console.log(paginationParams);
+  ElNotification({
+    title: "Page Number",
+    message: h(
+      "i",
+      { style: "color: teal" },
+      `The current page is page ${paginationParams.currentSize}`
+    ),
+  });
 });
-console.log(paginParams);
+
+function search() {
+  ElNotification({
+    title: "Success",
+    message: `This is a success message in page ${paginParams.currentSize}`,
+    type: "success",
+  });
+}
+
 const handleClick = (row: string) => {
   console.log(row);
 };

@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
@@ -6,32 +6,59 @@
 .router-view {
     height: 100vh;
     width: 100vw;
- }
+}
 
 .fs14 {
     font-size: 14px;
 }
 
-.mt{
+.mt {
     margin-top: 15px;
 }
-.ml{
+
+.ml {
     margin-left: 15px !important;
     background: black;
 }
-.mr{
+
+.mr {
     margin-right: 15px;
 }
-.full{
+
+.full {
     width: 100%;
 }
-.pb0{
+
+.pb0 {
     padding-bottom: 0 !important;
 }
-.mg0{
+
+.mg0 {
     margin: 0;
 }
-.flex-end{
+
+.flex-end {
     display: flex;
     justify-content: flex-end;
+}
+
+::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 4px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    background: #535353;
+}
+
+::-webkit-scrollbar-track {
+    /*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background: #ededed;
 }
