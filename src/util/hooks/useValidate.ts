@@ -6,6 +6,7 @@ const valid = new Validate();
 
 export interface UseValidate {
   valid: InstanceType<typeof Validate>;
+  reset: () => void;
   validate: () => Promise<boolean | undefined>;
 }
 
@@ -22,6 +23,9 @@ function useValidate(
 
   return {
     valid,
+    reset(): void {
+      (ref.value as InstanceType<typeof ElForm>).resetFields();
+    },
     async validate(): Promise<boolean | undefined> {
       const token: boolean | undefined = await verify();
       return token;
