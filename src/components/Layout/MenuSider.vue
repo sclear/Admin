@@ -29,12 +29,12 @@ interface IMenuList {
 const menu = reactive<IMenuList[]>([
   {
     name: "page",
-    icon: "el-icon-Box",
+    icon: "iconfont icon-gongzuotai",
     path: "/home",
   },
   {
     name: "Element+",
-    icon: "el-icon-Basketball",
+    icon: "iconfont icon-yewuzu",
     path: "/element",
     children: [
       {
@@ -77,7 +77,7 @@ const menu = reactive<IMenuList[]>([
   },
   {
     name: "业务示例",
-    icon: "el-icon-Box",
+    icon: "iconfont icon-yewuzu",
     path: "/example",
   },
 ]);
