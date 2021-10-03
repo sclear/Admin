@@ -2,7 +2,7 @@
   <Container>
     <template #header>
       <ElCard>
-        <h3>Icon 图标</h3>
+        <h3 class="title-color">Icon 图标</h3>
       </ElCard>
     </template>
     <ElCard shadow="hover">

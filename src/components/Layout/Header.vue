@@ -2,8 +2,6 @@
   <div class="header">
     <div class="head-l">
       <div :class="isCollapse ? 'logo mini-logo' : 'logo'">
-        <!-- <img v-if="!isCollapse" src="@/assets/images/l.png" alt="" /> -->
-        <!-- <img v-else src="@/assets/images/s.png" alt="" /> -->
         <h2 v-if="!isCollapse">Admin</h2>
         <h4 v-else>Admin</h4>
       </div>

@@ -13,11 +13,7 @@
         <el-input type="text" v-model="data.user" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="pass">
-        <el-input
-          type="password"
-          v-model="data.pass"
-          autocomplete="off"
-        ></el-input>
+        <el-input type="password" v-model="data.pass" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button
@@ -38,19 +34,13 @@ import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import { ElInput, ElButton, ElForm, ElFormItem } from "element-plus";
 import { useValidate } from "@/util/hooks";
+
 const router = useRouter();
-
-interface IloginForm {
-  pass: string;
-  user: string;
-}
-
 const loading = ref<boolean>(false);
-const data = reactive<IloginForm>({
+const data = reactive({
   user: "Admin",
   pass: "admin",
 });
-
 const loginForm = ref<InstanceType<typeof ElForm>>();
 
 const { valid, validate, reset } = useValidate(loginForm);
@@ -61,9 +51,11 @@ const rules = reactive({
 });
 
 function submitForm() {
-  validate().then((res) => {
-    // verify success
-    if (res) router.push("/element");
+  validate().then((valid) => {
+    if (valid) {
+      // 验证结果 res
+      router.push("/");
+    }
   });
 }
 </script>

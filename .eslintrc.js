@@ -16,8 +16,10 @@ module.exports = {
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
-    'linebreak-style': ["error", "windows"], //默认unix
-    "prettier/prettier": ["error", {
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/no-non-null-assertion": ["off"],
+    'linebreak-style': ["warn", "windows"], //默认unix
+    "prettier/prettier": ["warn", {
       "endOfLine": "auto"
     }]
   },

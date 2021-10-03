@@ -82,6 +82,7 @@
         class="flex-end mt mr"
         :page-sizes="[100, 200, 300, 400]"
         background
+        v-model:currentPage="paginParams.currentSize"
         @current-change="paginParams.currentChange"
         @size-change="paginParams.sizeChange"
         :layout="paginParams.layout"
@@ -198,6 +199,7 @@ const paginParams = usePagination((paginationParams) => {
 });
 
 function search() {
+  paginParams.currentSize = 1;
   ElNotification({
     title: "Success",
     message: `This is a success message in page ${paginParams.currentSize}`,

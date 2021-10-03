@@ -3,8 +3,7 @@
     <el-menu
       class="el-menu-vertical-demo"
       size="small"
-      @select="select"
-      :default-active="activeMenu"
+      :default-active="route.path"
       :router="true"
       :unique-opened="true"
       :collapse="isCollapse"
@@ -19,10 +18,11 @@ import { computed, reactive } from "@vue/reactivity";
 import { useStore } from "vuex";
 import { ElMenu } from "element-plus";
 import MenuItem from "./MenuItem.vue";
+import { useRoute } from "vue-router";
 
 interface IMenuList {
   name: string;
-  path: string;
+  path?: string;
   icon?: string;
   children?: IMenuList[];
 }
@@ -38,40 +38,21 @@ const menu = reactive<IMenuList[]>([
     path: "/element",
     children: [
       {
-        name: "基础",
-        path: "/element",
-        children: [
-          {
-            name: "Button",
-            path: "/element/button",
-          },
-          {
-            name: "Icon",
-            path: "/element/icon",
-          },
-        ],
-      },
-      {
-        name: "表单",
-        path: "/form",
-        children: [
-          {
-            name: "Radio",
-            path: "/element/radio",
-          },
-          {
-            name: "inputNumber",
-            path: "/element/inputnumber",
-          },
-        ],
-      },
-      {
         name: "Button",
-        path: "/home",
+        path: "/element/button",
       },
       {
-        name: "Link",
-        path: "/home",
+        name: "Icon",
+        path: "/element/icon",
+      },
+
+      {
+        name: "Radio",
+        path: "/element/radio",
+      },
+      {
+        name: "inputNumber",
+        path: "/element/inputnumber",
       },
     ],
   },
@@ -80,14 +61,37 @@ const menu = reactive<IMenuList[]>([
     icon: "iconfont icon-yewuzu",
     path: "/example",
   },
+  {
+    name: "Hooks",
+    icon: "iconfont icon-yewuzu",
+    path: "hooks",
+    children: [
+      {
+        path: "/hooks/useTheme",
+        name: "useTheme",
+      },
+      {
+        path: "/hooks/usePagination",
+        name: "usePagination",
+      },
+      {
+        path: "/hooks/useValidate",
+        name: "useValidate",
+      },
+      {
+        path: "/hooks/useOSComponent",
+        name: "useOSComponent",
+      },
+    ],
+  },
 ]);
+const route = useRoute();
 
 const store = useStore();
 const isCollapse = computed(() => store.state.setting.isCollapse);
-const activeMenu = computed(() => store.state.setting.activeMenu);
-function select(path: string) {
-  store.commit("MENU_ACTIVE", path);
-}
+// function select(path: string) {
+//   store.commit("MENU_ACTIVE", path);
+// }
 </script>
 
 <style scoped lang="less">

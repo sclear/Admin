@@ -8,10 +8,8 @@
       <menuItemSliders :menuInfo="item.children"></menuItemSliders>
     </el-sub-menu>
     <el-menu-item v-else :index="item.path">
-      <template #title>
-        <i class="menu-icon" :class="item.icon"></i>
-        <span>{{ item.name }}</span>
-      </template>
+      <i class="menu-icon" :class="item.icon"></i>
+      <span>{{ item.name }}</span>
     </el-menu-item>
   </template>
 </template>
