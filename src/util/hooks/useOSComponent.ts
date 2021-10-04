@@ -21,7 +21,7 @@ let incetanceList: Instances[] = [];
 function useOSComponent(
   component: Component,
   props = {} as UseOSComponentOption<VNodeGroup, VNode>,
-  closeCb?: (type: unknown) => void
+  onClose?: (type: unknown) => void
 ): any {
   if (!component) throw new Error("component is not found");
   const id = `conponents-out-${idx++}`;
@@ -35,24 +35,23 @@ function useOSComponent(
         : props.VNode
       : null
   );
-  function destory(type: unknown) {
+  function destroy(type: unknown) {
     render(null, container);
     incetanceList = incetanceList.filter((item) => item.id !== id);
-    closeCb && closeCb(type);
+    onClose && onClose(type);
   }
   incetanceList.push({
     id,
     vm,
-    close: destory,
+    close: destroy,
   });
-  vm.props!.onDestroy = destory;
+  vm.props!.onDestroy = destroy;
   render(vm, container);
   container.firstElementChild!.className = id;
-  console.log(container.firstElementChild);
   document.body.appendChild(container.firstElementChild as Node);
   return {
     vm,
-    destory,
+    destroy,
   };
 }
 

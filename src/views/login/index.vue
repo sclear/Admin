@@ -13,7 +13,11 @@
         <el-input type="text" v-model="data.user" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="data.pass" autocomplete="off"></el-input>
+        <el-input
+          type="password"
+          v-model="data.pass"
+          autocomplete="off"
+        ></el-input>
       </el-form-item>
       <el-form-item>
         <el-button

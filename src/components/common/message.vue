@@ -1,17 +1,15 @@
 <template>
-  <div @click="$emit('destroy')">
-    1111
-    <p>
-      <slot></slot>
-    </p>
+  <div>
+    <h1 @click="$emit('destroy')">{{ title }}</h1>
+    <slot></slot>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { onUnmounted, defineEmits, defineProps } from "vue";
 
-const emit = defineEmits(["destroys", "big"]);
-const props = defineProps(["messages"]);
+const emit = defineEmits(["destroy", "big"]);
+const props = defineProps(["title"]);
 
 onUnmounted(() => {
   console.log("close");
@@ -21,8 +19,11 @@ onUnmounted(() => {
 <style scoped>
 div {
   position: fixed;
-  top: 100px;
-  right: 100px;
-  background: red;
+  margin-top: 40%;
+  margin-left: 50%;
+  transform: translate(-50%, -70%);
+  top: 0;
+  left: 0;
+  z-index: 999;
 }
 </style>

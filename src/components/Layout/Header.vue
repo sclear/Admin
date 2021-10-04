@@ -1,26 +1,67 @@
 <template>
-  <div class="header">
+  <div class="header theme-header">
     <div class="head-l">
       <div :class="isCollapse ? 'logo mini-logo' : 'logo'">
-        <h2 v-if="!isCollapse">Admin</h2>
-        <h4 v-else>Admin</h4>
+        <h2 class="theme-icon" v-if="!isCollapse">Admin</h2>
+        <h4 class="theme-icon" v-else>Admin</h4>
       </div>
       <el-icon
         :class="isCollapse ? 'icon icon-close' : 'icon'"
         @click="updateMenuStatu"
       >
-        <fold />
+        <fold class="theme-icon" />
       </el-icon>
     </div>
-    <div class="head-r"></div>
+    <div class="head-r">
+      <ElDropdown @command="changeTheme">
+        <div class="theme">
+          <i class="iconfont icon-zhuti theme-icon"></i>
+        </div>
+        <template #dropdown>
+          <ElDropdownMenu>
+            <ElDropdownItem command="pink">粉红少女心</ElDropdownItem>
+            <ElDropdownItem command="dark">黑色冷幽默</ElDropdownItem>
+            <ElDropdownItem>正常风格</ElDropdownItem>
+          </ElDropdownMenu>
+        </template>
+      </ElDropdown>
+      <ElDropdown>
+        <div class="user">
+          <img
+            src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+            alt=""
+          />
+        </div>
+        <template #dropdown>
+          <ElDropdownMenu>
+            <ElDropdownItem>个人中心</ElDropdownItem>
+            <ElDropdownItem>系统设置</ElDropdownItem>
+            <ElDropdownItem>退出系统</ElDropdownItem>
+          </ElDropdownMenu>
+        </template>
+      </ElDropdown>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ElIcon } from "element-plus";
+import {
+  ElIcon,
+  ElDropdown,
+  ElDropdownItem,
+  ElDropdownMenu,
+} from "element-plus";
 import { Fold } from "@element-plus/icons";
 import { useStore } from "vuex";
 import { computed } from "@vue/reactivity";
+import { useTheme } from "@/util/hooks";
+
+const theme = useTheme();
+
+function changeTheme(type: any) {
+  console.log(type);
+  theme.value = type;
+}
 
 const store = useStore();
 const isCollapse = computed(() => store.state.setting.isCollapse);
@@ -35,7 +76,10 @@ function updateMenuStatu() {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border-bottom: 1px solid #e6e6e6;
+  padding-right: 60px;
+  box-sizing: border-box;
   .head-l {
     display: flex;
     justify-content: flex-start;
@@ -49,6 +93,34 @@ function updateMenuStatu() {
     }
     .icon-close {
       transform: scale(1.5) rotate(180deg);
+    }
+  }
+  .head-r {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    .theme {
+      height: 40px;
+      width: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 20px;
+      i {
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+    .user {
+      height: 40px;
+      width: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      img {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
   .logo {

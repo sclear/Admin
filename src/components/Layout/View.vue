@@ -1,12 +1,11 @@
 <template>
-  <router-view class="view"></router-view>
+  <router-view class="theme-container-view"></router-view>
 </template>
 
 <style scoped lang="less">
-.view {
+.theme-container-view {
   height: 100%;
   flex: 1;
   overflow: auto;
-  background: #f6f9fa;
 }
 </style>
