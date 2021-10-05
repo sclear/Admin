@@ -58,8 +58,7 @@ import { useTheme } from "@/util/hooks";
 
 const theme = useTheme();
 
-function changeTheme(type: any) {
-  console.log(type);
+function changeTheme(type: "dark" | "pink") {
   theme.value = type;
 }
 
@@ -77,7 +76,7 @@ function updateMenuStatu() {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #e6e6e6;
+  // border-bottom: 1px solid #e6e6e6;
   padding-right: 60px;
   box-sizing: border-box;
   .head-l {

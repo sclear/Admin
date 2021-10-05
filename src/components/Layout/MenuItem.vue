@@ -7,7 +7,7 @@
       </template>
       <menuItemSliders :menuInfo="item.children"></menuItemSliders>
     </el-sub-menu>
-    <el-menu-item v-else :index="item.path">
+    <el-menu-item class="theme-active-item" v-else :index="item.path">
       <i class="menu-icon" :class="item.icon"></i>
       <span>{{ item.name }}</span>
     </el-menu-item>

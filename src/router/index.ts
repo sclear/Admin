@@ -1,4 +1,7 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import { routerList } from "./modules";
+import store from "./../store/index";
+import { ElNotification } from "element-plus";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,59 +14,45 @@ const routes: Array<RouteRecordRaw> = [
     name: "Layout",
     component: () => import("../views/Layout.vue"),
     redirect: () => "/element/button",
-    children: [
-      {
-        path: "/element/button",
-        name: "Button",
-        component: () => import("@/views/element/button/index.vue"),
-      },
-      {
-        path: "/element/icon",
-        name: "Icon",
-        component: () => import("@/views/element/Icon/index.vue"),
-      },
-      {
-        path: "/element/radio",
-        name: "Radio",
-        component: () => import("@/views/element/radio/index.vue"),
-      },
-      {
-        path: "/element/inputnumber",
-        name: "InputNumber",
-        component: () => import("@/views/element/inputNumber/index.vue"),
-      },
-      {
-        path: "/hooks/useTheme",
-        name: "useTheme",
-        component: () => import("@/views/hooks/useTheme.vue"),
-      },
-      {
-        path: "/hooks/usePagination",
-        name: "usePagination",
-        component: () => import("@/views/hooks/usePagination.vue"),
-      },
-      {
-        path: "/hooks/useValidate",
-        name: "useValidate",
-        component: () => import("@/views/hooks/useValidate.vue"),
-      },
-      {
-        path: "/hooks/useOSComponent",
-        name: "useOSComponent",
-        component: () => import("@/views/hooks/useOSComponent.vue"),
-      },
-      {
-        path: "/example",
-        name: "Example",
-        component: () => import("@/views/example/index.vue"),
-      },
-    ],
+    children: [],
   },
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+
+function getMenu() {
+  ElNotification({
+    title: "请稍等...",
+    message: "路由注册中",
+    type: "info",
+  });
+  return new Promise((resolve: any) => {
+    setTimeout(() => {
+      resolve(routerList);
+      ElNotification({
+        title: "Success",
+        message: "开始使用吧",
+        type: "success",
+      });
+    }, 2000);
+  });
+}
+
+// BAD
+router.beforeEach(async (to, from, next) => {
+  // 是否登录
+  if (!(store.state as { user: any }).user.isLogin) {
+    const menu = await getMenu();
+    (menu as typeof routerList).forEach((item) =>
+      router.addRoute("Layout", item)
+    );
+    store.commit("user/UPDATE_LOGIN", true);
+    return next(to.path);
+  }
+  next();
 });
 
 export default router;

@@ -1,5 +1,5 @@
 <template>
-  <div class="menu-slider">
+  <div class="menu-slider theme-menu-bg">
     <el-menu
       class="el-menu-vertical-demo"
       size="small"
@@ -28,13 +28,8 @@ interface IMenuList {
 }
 const menu = reactive<IMenuList[]>([
   {
-    name: "page",
-    icon: "iconfont icon-gongzuotai",
-    path: "/home",
-  },
-  {
-    name: "Element+",
-    icon: "iconfont icon-yewuzu",
+    name: "Element",
+    icon: "iconfont icon-chajiancanshupeizhi",
     path: "/element",
     children: [
       {
@@ -58,12 +53,12 @@ const menu = reactive<IMenuList[]>([
   },
   {
     name: "业务示例",
-    icon: "iconfont icon-yewuzu",
+    icon: "iconfont icon-table",
     path: "/example",
   },
   {
     name: "Hooks",
-    icon: "iconfont icon-yewuzu",
+    icon: "iconfont icon-hook",
     path: "hooks",
     children: [
       {

@@ -27,7 +27,6 @@
           @click="submitForm()"
           >{{ loading ? "登录中..." : "登录" }}</el-button
         >
-        <el-button @click="reset">重置</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -47,7 +46,7 @@ const data = reactive({
 });
 const loginForm = ref<InstanceType<typeof ElForm>>();
 
-const { valid, validate, reset } = useValidate(loginForm);
+const { valid, validate } = useValidate(loginForm);
 
 const rules = reactive({
   user: valid.must("请输入账号"),
@@ -58,7 +57,11 @@ function submitForm() {
   validate().then((valid) => {
     if (valid) {
       // 验证结果 res
-      router.push("/");
+      loading.value = true;
+      setTimeout(() => {
+        loading.value = false;
+        router.push("/");
+      }, 2000);
     }
   });
 }
