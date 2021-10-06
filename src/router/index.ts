@@ -53,10 +53,15 @@ function getMenu() {
 
 const whiteList: Array<string> = ["/login", "/404"];
 
+const token = () => sessionStorage.getItem("token") || null;
+
 router.beforeEach(async (to, from, next) => {
+  console.log(token());
   // 允许白名单成员
   if (whiteList.includes(to.path)) {
     return next();
+  } else if (!token()) {
+    return next("/login");
   }
   // 未登录请去注册路由
   else if (!(store.state as { user: any }).user.isLogin) {

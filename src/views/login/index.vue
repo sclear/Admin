@@ -58,6 +58,7 @@ function submitForm() {
     if (valid) {
       // 验证结果 res
       loading.value = true;
+      sessionStorage.setItem("token", "token:xxx");
       setTimeout(() => {
         loading.value = false;
         router.push("/");
