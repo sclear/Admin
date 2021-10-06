@@ -42,6 +42,6 @@ import { ElCard, ElDescriptions, ElDescriptionsItem } from "element-plus";
 
 <style scoped lang="less">
 img {
-  width: 70%;
+  width: 100%;
 }
 </style>

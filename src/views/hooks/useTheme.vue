@@ -19,3 +19,9 @@
 import Container from "@/components/common/Container.vue";
 import { ElCard } from "element-plus";
 </script>
+
+<style scoped>
+img {
+  width: 100%;
+}
+</style>

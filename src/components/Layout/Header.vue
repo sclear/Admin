@@ -29,7 +29,7 @@
           </ElDropdownMenu>
         </template>
       </ElDropdown>
-      <ElDropdown>
+      <ElDropdown @command="centerSetting">
         <div class="user">
           <img
             src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
@@ -40,7 +40,7 @@
           <ElDropdownMenu>
             <ElDropdownItem>个人中心</ElDropdownItem>
             <ElDropdownItem>系统设置</ElDropdownItem>
-            <ElDropdownItem>退出系统</ElDropdownItem>
+            <ElDropdownItem command="loginOut">退出系统</ElDropdownItem>
           </ElDropdownMenu>
         </template>
       </ElDropdown>
@@ -54,6 +54,7 @@ import {
   ElDropdown,
   ElDropdownItem,
   ElDropdownMenu,
+  ElNotification,
 } from "element-plus";
 import { Fold } from "@element-plus/icons";
 import { useStore } from "vuex";
@@ -61,10 +62,23 @@ import { computed } from "@vue/reactivity";
 import { useTheme } from "@/util/hooks";
 import { useRoute } from "vue-router";
 import { watch } from "@vue/runtime-core";
+import { useRouter } from "vue-router";
 
+const router = useRouter();
 const theme = useTheme();
 function changeTheme(type: "dark" | "pink") {
   theme.value = type;
+}
+function centerSetting(type) {
+  if (type) {
+    sessionStorage.removeItem("token");
+    router.push("/login");
+    ElNotification({
+      title: "提示",
+      message: "退出成功",
+      type: "success",
+    });
+  }
 }
 
 const store = useStore();
