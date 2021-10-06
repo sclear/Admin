@@ -17,7 +17,7 @@
         <i class="iconfont icon-sousuoxiao theme-icon"></i>
       </div>
 
-      <ElDropdown @command="changeTheme">
+      <ElDropdown @command="changeTheme" trigger="click">
         <div class="theme">
           <i class="iconfont icon-zhuti theme-icon"></i>
         </div>
@@ -29,7 +29,7 @@
           </ElDropdownMenu>
         </template>
       </ElDropdown>
-      <ElDropdown @command="centerSetting">
+      <ElDropdown @command="centerSetting" trigger="click">
         <div class="user">
           <img
             src="https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
