@@ -21,7 +21,7 @@
           当分页器被触发回调callback,paginationParams将会返回页码等信息
         </ElDescriptionsItem>
         <ElDescriptionsItem label="返回值 params" :span="2"
-          >该对象由reactive声明,并具有响应式。不希望在使用过程中对其解构,因为这将会让它失去响应式。
+          >该对象由reactive声明,并具有响应式。不希望在使用过程中对其解构,因为这将会让它失去响应。
           返回对象包含pageSize,layout,total,currentSize,currentChange,
           sizeChange
         </ElDescriptionsItem>

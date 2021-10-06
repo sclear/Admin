@@ -5,7 +5,7 @@ import { ElNotification } from "element-plus";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/Login",
+    path: "/login",
     name: "Login",
     component: () => import("../views/login/index.vue"),
   },
@@ -15,6 +15,16 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../views/Layout.vue"),
     redirect: () => "/element/button",
     children: [],
+  },
+  {
+    path: "/404",
+    name: "404",
+    component: () => import("../views/404/index.vue"),
+  },
+  {
+    path: "/:pathMatch(.*)*",
+    name: "404",
+    component: () => import("../views/404/index.vue"),
   },
 ];
 
@@ -33,7 +43,7 @@ function getMenu() {
     setTimeout(() => {
       resolve(routerList);
       ElNotification({
-        title: "Success",
+        title: "注册成功",
         message: "开始使用吧",
         type: "success",
       });
@@ -41,17 +51,25 @@ function getMenu() {
   });
 }
 
-// BAD
+const whiteList: Array<string> = ["/login", "/404"];
+
 router.beforeEach(async (to, from, next) => {
-  // 是否登录
-  if (!(store.state as { user: any }).user.isLogin) {
+  // 允许白名单成员
+  if (whiteList.includes(to.path)) {
+    return next();
+  }
+  // 未登录请去注册路由
+  else if (!(store.state as { user: any }).user.isLogin) {
     const menu = await getMenu();
     (menu as typeof routerList).forEach((item) =>
       router.addRoute("Layout", item)
     );
     store.commit("user/UPDATE_LOGIN", true);
     return next(to.path);
+  } else if ((store.state as { user: any }).user.isLogin) {
+    return next();
   }
+  //
   next();
 });
 

@@ -13,6 +13,10 @@
       </el-icon>
     </div>
     <div class="head-r">
+      <div @click="search" class="theme">
+        <i class="iconfont icon-sousuoxiao theme-icon"></i>
+      </div>
+
       <ElDropdown @command="changeTheme">
         <div class="theme">
           <i class="iconfont icon-zhuti theme-icon"></i>
@@ -55,18 +59,20 @@ import { Fold } from "@element-plus/icons";
 import { useStore } from "vuex";
 import { computed } from "@vue/reactivity";
 import { useTheme } from "@/util/hooks";
+import { useRoute } from "vue-router";
+import { watch } from "@vue/runtime-core";
 
 const theme = useTheme();
-
 function changeTheme(type: "dark" | "pink") {
   theme.value = type;
 }
 
 const store = useStore();
+const route = useRoute();
+watch(route, () => store.commit("setting/OPEN_SEARCH", false));
+const search = () => store.commit("setting/OPEN_SEARCH");
 const isCollapse = computed(() => store.state.setting.isCollapse);
-function updateMenuStatu() {
-  store.commit("setting/UPDATE_COLLAPSE");
-}
+const updateMenuStatu = () => store.commit("setting/UPDATE_COLLAPSE");
 </script>
 
 <style scoped lang="less">
@@ -76,7 +82,6 @@ function updateMenuStatu() {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // border-bottom: 1px solid #e6e6e6;
   padding-right: 60px;
   box-sizing: border-box;
   .head-l {
@@ -104,7 +109,7 @@ function updateMenuStatu() {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 0 20px;
+      margin: 0 20px 0 0;
       i {
         font-size: 20px;
         cursor: pointer;

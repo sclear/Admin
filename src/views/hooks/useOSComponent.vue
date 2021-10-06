@@ -3,7 +3,10 @@
     <template #header>
       <ElCard>
         <h3 class="title-color">
-          useOSComponent <ElButton @click="renderOSComponent">试一试</ElButton>
+          useOSComponent
+          <ElButton @click="renderOSComponent" title="代码示例在下方"
+            >尝试一下</ElButton
+          >
         </h3>
       </ElCard>
     </template>
@@ -13,7 +16,7 @@
         <div class="des-color fs14 mt">
           应用于方法调用组件实例并渲染至页面,例如{elementui中的message('这是消息')},快尝试一下吧
           <h4>
-            这属于一个比较特殊的组件,虽然3.0已经废弃了$destroy,但是我为你绑定了destroy方法来进行主动摧毁组件,在使用emit调用destroy时
+            这属于一个比较特殊的组件,虽然3.0已经废弃了$destroy,但是我依然为你绑定了destroy方法来帮助你摧毁组件,在使用emit调用destroy时
             允许携带内容,内容将会反馈在回调(onClose)内
           </h4>
         </div>
@@ -27,9 +30,9 @@
           <p>component: 这是很好理解的,就是需要渲染的组件</p>
           <h4>
             props：这里的参数是比较复杂的可以理解成组件的Props &&
-            vNode,这里可以直接传入对象,对象将会穿透hooks为你植入到component的props内。
-            当然同时你可以传入vNode进入你的组件,你需要在形参(props)内声明vNode,既{
-            vNode: VNode },vNode可以是一个vNode或者是一个对象内全是存储的vNode。
+            VNode,这里可以直接传入对象,对象将会穿透hooks为你植入到component的props内。
+            当然同时你可以传入VNode进入你的组件,你需要在形参(props)内声明VNode,既{
+            VNode: VNode },VNode可以是一个VNode或者是一个对象内全是存储的VNode。
           </h4>
           <p>
             onClose：这是当组件被销毁时为你准备的回调,它也会在参数中返回你销毁时携带的内容
